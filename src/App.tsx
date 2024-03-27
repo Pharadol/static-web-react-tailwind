@@ -1,10 +1,11 @@
-import './App.scss'
-function App() {
-  return (
-    <>
-      <p className="text-green-500 text-4xl">hello react</p>
-    </>
-  );
-}
+// import FrontLayout from "./components/layouts/FrontLayout";
 
-export default App;
+// function App() {
+//   return (
+//     <>
+//       <FrontLayout />
+//     </>
+//   );
+// }
+
+// export default App;

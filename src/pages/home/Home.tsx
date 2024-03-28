@@ -31,7 +31,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="text-gray-600 mb-12">
+      <section className="text-gray-600 mb-24 pb-10">
         <div className="container px-5 pt-12 mx-auto">
           <h1 className="text-2xl md:text-4xl font-medium title-font text-center text-gray-900 mb-20">
             Raw Denim Heirloom Man Braid

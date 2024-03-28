@@ -1,217 +1,164 @@
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
 const Navbar = () => {
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const checkActiveMenu = (navlink: string): string => {
+    return navlink === location.pathname ? "bg-green-500" : "";
+  };
+
   return (
-    <nav className="bg-gray-800">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+    <nav className="bg-gray-800 fixed w-full z-20">
+      <div className="container mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <button
               type="button"
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
             >
-              <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              {/*
-      Icon when menu is closed.
 
-      Menu open: "hidden", Menu closed: "block"
-    */}
+              {/* Menu open: "hidden", Menu closed: "block" */}
               <svg
-                className="block h-6 w-6"
+                className={`${isOpen ? "hidden" : "block"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
                 stroke="currentColor"
                 aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-              {/*
-      Icon when menu is open.
 
-      Menu open: "block", Menu closed: "hidden"
-    */}
+              {/* Menu open: "block", Menu closed: "hidden" */}
               <svg
-                className="hidden h-6 w-6"
+                className={`${isOpen ? "block" : "hidden"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
                 stroke="currentColor"
                 aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  strokeWidth={2}
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
-            </div>
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
-                {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                <a
-                  href="#"
-                  className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                  aria-current="page"
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Team
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Projects
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Calendar
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
+          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between">
+            <div className="flex-shrink-0 flex items-center">
+              <NavLink
+                to="/"
+                className="flex title-font font-medium items-center md:justify-start justify-center text-white"
               >
-                <path
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                />
-              </svg>
-            </button>
-            {/* Profile dropdown */}
-            <div className="relative ml-3">
-              <div>
-                <button
-                  type="button"
-                  className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  id="user-menu-button"
-                  aria-expanded="false"
-                  aria-haspopup="true"
+                  strokeWidth={2}
+                  className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                  viewBox="0 0 24 24"
                 >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </button>
-              </div>
-              {/*
-      Dropdown menu, show/hide based on menu state.
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span className="ml-3 text-xl">React~TW</span>
+              </NavLink>
+            </div>
 
-      Entering: "transition ease-out duration-100"
-        From: "transform opacity-0 scale-95"
-        To: "transform opacity-100 scale-100"
-      Leaving: "transition ease-in duration-75"
-        From: "transform opacity-100 scale-100"
-        To: "transform opacity-0 scale-95"
-    */}
-              <div
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu-button"
-                tabIndex={-1}
-              >
-                {/* Active: "bg-gray-100", Not Active: "" */}
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabIndex={-1}
-                  id="user-menu-item-0"
+            <div className="hidden sm:block sm:ml-6">
+              <div className="flex space-x-4">
+                <NavLink
+                  to="/"
+                  className={`${checkActiveMenu(
+                    "/"
+                  )} navLink text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
                 >
-                  Your Profile
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabIndex={-1}
-                  id="user-menu-item-1"
+                  Home
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  className={`${checkActiveMenu(
+                    "/about"
+                  )} navLink text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
                 >
-                  Settings
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabIndex={-1}
-                  id="user-menu-item-2"
+                  About
+                </NavLink>
+                <NavLink
+                  to="/teams"
+                  className={`${checkActiveMenu(
+                    "/teams"
+                  )} navLink text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
                 >
-                  Sign out
-                </a>
+                  Teams
+                </NavLink>
+                <NavLink
+                  to="/projects"
+                  className={`${checkActiveMenu(
+                    "/projects"
+                  )} navLink text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                >
+                  Projects
+                </NavLink>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* Mobile menu, show/hide based on menu state. */}
-      <div className="sm:hidden" id="mobile-menu">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-          <a
-            href="#"
-            className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-            aria-current="page"
+      <div
+        className={`${isOpen ? "sm:hidden block" : "sm:hidden hidden"}`}
+        id="mobile-menu"
+      >
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          <NavLink
+            to="/"
+            className={`${checkActiveMenu(
+              "/"
+            )} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
           >
-            Dashboard
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={`${checkActiveMenu(
+              "/about"
+            )} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
           >
-            Team
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            About
+          </NavLink>
+          <NavLink
+            to="/teams"
+            className={`${checkActiveMenu(
+              "/teams"
+            )} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+          >
+            Teams
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className={`${checkActiveMenu(
+              "/projects"
+            )} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
           >
             Projects
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-          >
-            Calendar
-          </a>
+          </NavLink>
         </div>
       </div>
     </nav>

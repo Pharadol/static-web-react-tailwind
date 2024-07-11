@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# static-web-react-tailwind
+This is a project to practice using React with TailwindCSS, React Router, and other tools.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Demo
+You can see a live demo of the project [here](https://static-web-react-tailwind.vercel.app/).
 
-Currently, two official plugins are available:
+![Project Screenshot](https://img5.pic.in.th/file/secure-sv1/static-web-react-tailwind.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+ - React.js
+ - TailwindCSS
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/Pharadol/static-web-react-tailwind
+    ```
 
-- Configure the top-level `parserOptions` property like this:
+2. Navigate to the project directory:
+    ```sh
+    cd static-web-react-tailwind
+    ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4. Start the development server:
+    ```sh
+    npm run dev
+    ```
